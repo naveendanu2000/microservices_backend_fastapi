@@ -5,7 +5,7 @@ from controller.signupController import signupController
 router = APIRouter()
 
 
-@router.post("/auth/signup", tags=["Auth"])
+@router.post("/signup", tags=["Auth"])
 async def signup(user: UserSchema, request: Request):
     pool = request.app.state.pool
 

@@ -5,7 +5,7 @@ from controller.signinController import signinController
 router = APIRouter()
 
 
-@router.post("/auth/signin", tags=["Auth"])
+@router.post("/signin", tags=["Auth"])
 async def signin(user: UserCredentials, request: Request, response: Response):
     pool = request.app.state.pool
     # print(user)

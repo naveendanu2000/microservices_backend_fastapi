@@ -4,7 +4,7 @@ from controller.getUserController import getUserController
 router = APIRouter()
 
 
-@router.get("/auth", tags=["Auth"])
+@router.get("/user", tags=["Auth"])
 async def getUser(request: Request):
     pool = request.app.state.pool
     token = request.cookies.get("access_token")
