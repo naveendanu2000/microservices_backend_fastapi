@@ -10,4 +10,4 @@ async def create_pool(app: FastAPI):
 
 
 async def close_pool(app: FastAPI):
-    await app.stata.pool.close()
+    await app.state.pool.close()

@@ -4,8 +4,10 @@ load_dotenv()
 
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from routers.signin import router as signinRouter
 from connection.connection import create_pool, close_pool
+
+from routers.signin import router as signinRouter
+from routers.signup import router as signupRouter
 
 
 @asynccontextmanager
@@ -34,6 +36,7 @@ app = FastAPI(lifespan=lifespan)
 
 
 app.include_router(signinRouter)
+app.include_router(signupRouter)
 
 
 @app.get("/")
