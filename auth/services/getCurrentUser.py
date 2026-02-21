@@ -11,6 +11,8 @@ algorithm = os.getenv("ALGORITHM")
 def getCurrentUser(token: str | None) -> str:
     if not token:
         raise HTTPException(status_code=401, detail="Unauthorized!")
+    if not jwtSecret or not algorithm:
+        raise HTTPException(status_code=500, detail="Server configuration error!")
     try:
         payload = jwt.decode(jwt=token, key=jwtSecret, algorithms=algorithm)
 
