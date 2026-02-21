@@ -7,6 +7,9 @@ router = APIRouter()
 @router.api_route(
     "/posts/{path:path}", methods=["GET", "POST", "PUT", "DELETE"], tags=["Posts"]
 )
-async def posts_proxy(path: str, request: Request):
-    target_url = f"{POSTS_SERVICE}/{path}"
+async def posts_proxy(path: str | None, request: Request):
+    if path:
+        target_url = f"{POSTS_SERVICE}/{path}"
+    else:
+        target_url = f"{POSTS_SERVICE}"
     return await forward_request(request, target_url)
