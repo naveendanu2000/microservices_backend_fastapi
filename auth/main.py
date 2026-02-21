@@ -5,6 +5,7 @@ load_dotenv()
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from connection.connection import create_pool, close_pool
+import uvicorn
 
 from routers.signin import router as signinRouter
 from routers.signup import router as signupRouter
@@ -44,3 +45,6 @@ app.include_router(getUserRouter)
 @app.get("/")
 def home():
     return "Welcome to the Auth service!"
+
+
+uvicorn.run("main:app", reload=True, port=8001)
