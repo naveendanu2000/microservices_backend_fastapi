@@ -4,6 +4,7 @@ from services.gateway import forward_request, POSTS_SERVICE
 router = APIRouter()
 
 
+@router.api_route("/posts", methods=["GET", "POST", "PUT", "DELETE"], tags=["Posts"])
 @router.api_route(
     "/posts/{path:path}", methods=["GET", "POST", "PUT", "DELETE"], tags=["Posts"]
 )
