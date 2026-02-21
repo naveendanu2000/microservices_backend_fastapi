@@ -1,10 +1,17 @@
-from typing import List
 from schemas.UserCredentialsSchema import UserCredentials
+from schemas.UserSchema import UserSchema
 import asyncpg
 
 
-async def getUserCredentials(user: UserCredentials, conn: asyncpg.Connection) -> List[dict]:
-    rows: List[asyncpg.Record] = await conn.fetch(
-        f"SELECT * from \"Users\".users WHERE name='{user.username}'"
+async def getUserCredentials(
+    user: UserCredentials, conn: asyncpg.Connection
+) -> UserSchema | None:
+    row: asyncpg.Record | None = await conn.fetchrow(
+        f'SELECT name, age, email, sports, password  from "Users".users WHERE name=$1',
+        user.username,
     )
-    return [dict(row) for row in rows]
+
+    if row is None:
+        return None
+    else:
+        return UserSchema(**row)

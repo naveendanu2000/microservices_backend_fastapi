@@ -8,6 +8,7 @@ from connection.connection import create_pool, close_pool
 
 from routers.signin import router as signinRouter
 from routers.signup import router as signupRouter
+from routers.getUser import router as getUserRouter
 
 
 @asynccontextmanager
@@ -37,6 +38,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.include_router(signinRouter)
 app.include_router(signupRouter)
+app.include_router(getUserRouter)
 
 
 @app.get("/")
