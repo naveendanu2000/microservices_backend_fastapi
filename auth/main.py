@@ -14,7 +14,7 @@ from routers.getUser import router as getUserRouter
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Starting the app")
+    print("Starting the auth service")
 
     try:
         await create_pool(app=app)
