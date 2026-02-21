@@ -4,7 +4,7 @@ from controllers.getPostsControllers import getPostsController
 router = APIRouter()
 
 
-@router.get("/posts", tags=["Posts"])
+@router.get("/all", tags=["Posts"])
 async def getPosts(request: Request):
     pool = request.app.state.pool
 

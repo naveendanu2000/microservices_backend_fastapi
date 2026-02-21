@@ -6,7 +6,7 @@ from services.verifyJWT import verifyJWT
 router = APIRouter()
 
 
-@router.post("/posts", tags=["Posts"])
+@router.post("/post", tags=["Posts"])
 async def createPost(post: PostSchema, request: Request):
     pool = request.app.state.pool
 
