@@ -6,7 +6,7 @@ router = APIRouter()
 
 @router.api_route("/auth", methods=["GET", "POST"], tags=["Auth"])
 @router.api_route("/auth/{path:path}", methods=["GET", "POST"], tags=["Auth"])
-async def auth_proxy(path: str | None, request: Request):
+async def auth_proxy(request: Request, path: str = ""):
     if path:
         target_url = f"{AUTH_SERVICE}/{path}"
     else:

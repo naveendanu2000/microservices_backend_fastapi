@@ -8,7 +8,7 @@ router = APIRouter()
 @router.api_route(
     "/posts/{path:path}", methods=["GET", "POST", "PUT", "DELETE"], tags=["Posts"]
 )
-async def posts_proxy(path: str | None, request: Request):
+async def posts_proxy(request: Request, path: str = ""):
     if path:
         target_url = f"{POSTS_SERVICE}/{path}"
     else:
