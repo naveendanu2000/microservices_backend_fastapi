@@ -46,5 +46,5 @@ app.include_router(getUserRouter)
 def home():
     return "Welcome to the Auth service!"
 
-
-uvicorn.run("main:app", reload=True, port=8001)
+if __name__ == "__main__":
+    uvicorn.run("main:app", reload=True, port=8001)
