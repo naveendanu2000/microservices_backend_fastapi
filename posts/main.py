@@ -14,7 +14,7 @@ from routers.deletePost import router as deletePostsRouter
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Starting posts service")
+    print("Starting the posts service")
     try:
         await create_pool(app=app)
         print("Connected to DB!")
