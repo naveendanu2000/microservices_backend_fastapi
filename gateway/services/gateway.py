@@ -5,6 +5,7 @@ app = FastAPI()
 
 AUTH_SERVICE = "http://localhost:8001"
 POSTS_SERVICE = "http://localhost:8002"
+COMMENTS_SERVICE = "http://localhost:8003"
 
 
 async def forward_request(request: Request, target_url: str):
