@@ -12,9 +12,9 @@ async def createPost(post: PostSchema, request: Request):
 
     token = request.cookies.get("access_token")
 
-    username = verifyJWT(token)
+    userid = verifyJWT(token)
 
-    if not username:
+    if not userid:
         raise HTTPException(status_code=401, detail="session expired!")
 
     async with pool.acquire() as conn:

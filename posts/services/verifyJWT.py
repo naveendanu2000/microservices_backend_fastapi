@@ -8,7 +8,7 @@ jwtSecret = os.getenv("JWT_SECRET")
 algorithm = os.getenv("ALGORITHM")
 
 
-def verifyJWT(token: str | None) -> str:
+def verifyJWT(token: str | None) -> int:
     if not token:
         raise HTTPException(status_code=401, detail="Unauthorized!")
     if not jwtSecret or not algorithm:
@@ -16,12 +16,12 @@ def verifyJWT(token: str | None) -> str:
     try:
         payload = jwt.decode(jwt=token, key=jwtSecret, algorithms=[algorithm])
 
-        username = payload.get("sub")
+        userid = payload.get("id")
 
-        if username is None:
+        if userid is None:
             raise Exception("Credentials Exception!")
 
-        return username
+        return userid
 
     except InvalidTokenError as e:
         raise HTTPException(status_code=401, detail=f"Invalid Session!{e}")
