@@ -7,7 +7,7 @@ async def getUserCredentials(
     user: UserCredentials, conn: asyncpg.Connection
 ) -> UserSchema | None:
     row: asyncpg.Record | None = await conn.fetchrow(
-        f'SELECT name, age, email, sports, password  from "Users".users WHERE name=$1',
+        f'SELECT id, name, age, email, sports, password  from "Users".users WHERE name=$1',
         user.username,
     )
 

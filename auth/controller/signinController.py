@@ -20,7 +20,7 @@ async def signinController(
     if not verifyPassword(user.password, row.password):
         raise HTTPException(status_code=401, detail="Unauthorized!")
 
-    jwt = generateJWT(user.username)
+    jwt = generateJWT(user.username, row.id)
 
     response.set_cookie(
         key="access_token",

@@ -7,11 +7,12 @@ jwtSecret = os.getenv("JWT_SECRET")
 algorithm = os.getenv("ALGORITHM")
 
 
-def generateJWT(data: str):
+def generateJWT(data: str, id: int):
     expire = datetime.now(timezone.utc) + timedelta(minutes=int(token_expire_minutes))
 
     payload = {
         "sub": data,
+        "id": id,
         "exp": expire,
     }
 
