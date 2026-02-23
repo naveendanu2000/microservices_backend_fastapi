@@ -9,4 +9,4 @@ async def createPost(postid:int, request: Request):
     pool = request.app.state.pool
 
     async with pool.acquire() as conn:
-        await createPostController(postid=postid, conn=conn)
+        return await createPostController(postid=postid, conn=conn)

@@ -9,4 +9,4 @@ async def deleteUser(userid: int, request: Request):
     pool = request.app.state.pool
 
     async with pool.acquire() as conn:
-        await deleteUserController(userid=userid, conn=conn)
+        return await deleteUserController(userid=userid, conn=conn)

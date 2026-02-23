@@ -10,4 +10,4 @@ async def deletePost(postid: int, request: Request):
     pool = request.app.state.pool
 
     async with pool.acquire() as conn:
-        await deletePostController(postid=postid, conn=conn)
+        return await deletePostController(postid=postid, conn=conn)
