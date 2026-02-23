@@ -6,7 +6,7 @@ from services.verifyJWT import verifyJWT
 router = APIRouter()
 
 
-@router.delete("/delete/{postid}", tags=["Posts"])
+@router.delete("/posts/{postid}", tags=["Posts"])
 async def deletePost(postid: int, request: Request):
     pool = request.app.state.pool
 

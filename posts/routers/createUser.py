@@ -5,7 +5,7 @@ from controllers.createUserController import createUserController
 router = APIRouter()
 
 
-@router.post("/user", tags=["Posts"])
+@router.post("/users", tags=["Posts"])
 async def createUser(user: UserSchema, request: Request):
     pool = request.app.state.pool
 

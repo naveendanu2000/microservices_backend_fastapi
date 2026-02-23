@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Request
-
+from controllers.deleteUserController import deleteUserController
 
 router = APIRouter()
 
 
-@router.delete("/{userid}", tags=["Posts"])
+@router.delete("/users/{userid}", tags=["Posts"])
 async def deleteUser(userid: int, request: Request):
     pool = request.app.state.pool
 
