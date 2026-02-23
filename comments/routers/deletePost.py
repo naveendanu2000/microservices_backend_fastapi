@@ -5,7 +5,7 @@ from controllers.deletePostController import deletePostController
 router = APIRouter()
 
 
-@router.delete("/posts/{postid}", tags=["Connections"])
+@router.delete("/posts/{postid}", tags=["Posts"])
 async def deletePost(postid: int, request: Request):
     pool = request.app.state.pool
 

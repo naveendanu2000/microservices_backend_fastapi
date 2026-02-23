@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Request, HTTPException
+import httpx
 from schemas.PostSchema import PostSchema
 from controllers.createPostController import createPostController
 from services.verifyJWT import verifyJWT
@@ -18,4 +19,14 @@ async def createPost(post: PostSchema, request: Request):
         raise HTTPException(status_code=401, detail="session expired!")
 
     async with pool.acquire() as conn:
-        return await createPostController(post, conn)
+        res = await createPostController(post, conn)
+        if res:
+            async with httpx.AsyncClient() as client:
+                try:
+                    event_res = await client.post(
+                        "http://localhost:8004/posts", data={"postid": post.id}
+                    )
+                except Exception as e:
+                    raise Exception(f"Unable to post event to eventbus! {e}")
+                finally:
+                    return res

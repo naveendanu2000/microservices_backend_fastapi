@@ -36,7 +36,7 @@ async def lifespan(app: FastAPI):
             raise Exception(f"Unable to close the DB!{e}")
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(createCommentRouter)
 app.include_router(deleteCommentRouter)

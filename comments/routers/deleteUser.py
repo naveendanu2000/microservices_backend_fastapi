@@ -4,7 +4,7 @@ from controllers.deleteUserController import deleteUserController
 router = APIRouter()
 
 
-@router.delete("/users/{userid}", tags=["Connections"])
+@router.delete("/users/{userid}", tags=["Users"])
 async def deleteUser(userid: int, request: Request):
     pool = request.app.state.pool
 

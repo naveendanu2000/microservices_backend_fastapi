@@ -4,7 +4,7 @@ from controllers.getCommentsController import getCommentsController
 router = APIRouter()
 
 
-@router.get("/{postid}")
+@router.get("/{postid}", tags=["Comments"])
 async def getComments(postid: int, request: Request):
     pool = request.app.state.pool
 

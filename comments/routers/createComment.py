@@ -6,8 +6,8 @@ from controllers.createCommentController import createCommentController
 router = APIRouter()
 
 
-@router.post("/")
-async def createPost(comment: CommentSchema, request: Request):
+@router.post("/", tags=["Comments"])
+async def createComment(comment: CommentSchema, request: Request):
     pool = request.app.state.pool
 
     async with pool.acquire() as conn:
