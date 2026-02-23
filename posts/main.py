@@ -10,6 +10,8 @@ import uvicorn
 from routers.getPosts import router as getAllPostsRouter
 from routers.createPosts import router as createPostsRouter
 from routers.deletePost import router as deletePostsRouter
+from routers.createUser import router as createUserRouter
+from routers.deleteUser import router as deleteUserRouter
 
 
 @asynccontextmanager
@@ -39,6 +41,8 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(getAllPostsRouter)
 app.include_router(createPostsRouter)
 app.include_router(deletePostsRouter)
+app.include_router(createUserRouter)
+app.include_router(deleteUserRouter)
 
 
 @app.get("/")
@@ -47,4 +51,4 @@ def home():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8002)
+    uvicorn.run("main:app", reload=True, port=8002)
