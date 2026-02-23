@@ -1,5 +1,4 @@
 import jwt
-from jwt.exceptions import InvalidTokenError
 from fastapi import HTTPException
 import os
 
@@ -23,5 +22,5 @@ def verifyJWT(token: str | None) -> int:
 
         return userid
 
-    except InvalidTokenError as e:
+    except Exception as e:
         raise HTTPException(status_code=401, detail=f"Invalid Session!{e}")
