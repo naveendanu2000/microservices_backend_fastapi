@@ -8,6 +8,7 @@ from connection.connection import create_pool, close_pool
 import uvicorn
 
 from routers.getPosts import router as getAllPostsRouter
+from routers.getPostById import router as getPostById
 from routers.createPosts import router as createPostsRouter
 from routers.deletePost import router as deletePostsRouter
 from routers.createUser import router as createUserRouter
@@ -39,6 +40,7 @@ app = FastAPI(lifespan=lifespan)
 
 
 app.include_router(getAllPostsRouter)
+app.include_router(getPostById)
 app.include_router(createPostsRouter)
 app.include_router(deletePostsRouter)
 app.include_router(createUserRouter)
