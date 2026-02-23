@@ -4,8 +4,9 @@ from controllers.createPostController import createPostController
 
 router = APIRouter()
 
-@router.post(/posts, tags=["Comments"])
-async def createPost(postid:int, request: Request):
+
+@router.post("/posts", tags=["Comments"])
+async def createPost(postid: int, request: Request):
     pool = request.app.state.pool
 
     async with pool.acquire() as conn:
