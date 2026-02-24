@@ -5,7 +5,7 @@ from controllers.postCreatedController import postCreatedController
 router = APIRouter()
 
 
-@router.post("/posts", tags=["USER_EVENT"])
+@router.post("/posts", tags=["POST_EVENT"])
 async def publishPostCreatedEvent(postid: int, request: Request):
     pool = request.app.state.pool
 

@@ -4,7 +4,7 @@ from controllers.postDeletedController import postDeletedController
 router = APIRouter()
 
 
-@router.delete("/posts/{postid}", tags=["USER_EVENT"])
+@router.delete("/posts/{postid}", tags=["POST_EVENT"])
 async def publishPostDeletedEvent(postid: int, request: Request):
     pool = request.app.state.pool
 
