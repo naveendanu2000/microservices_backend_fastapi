@@ -11,7 +11,7 @@ async def postDeletedController(postid: int, conn: asyncpg.Connection):
 
             response = await conn.fetchrow(
                 'INSERT INTO "Events".posts_events(event_type, comments_updated) VALUES ($1, $2)',
-                "d",
+                'd',
                 comments_response.is_success,
             )
 

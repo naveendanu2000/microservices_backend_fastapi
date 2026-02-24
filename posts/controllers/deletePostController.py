@@ -1,5 +1,6 @@
 import asyncpg
 from fastapi import HTTPException
+import httpx
 
 
 async def deletePostController(id: int, userid: int, conn: asyncpg.Connection):
@@ -10,12 +11,21 @@ async def deletePostController(id: int, userid: int, conn: asyncpg.Connection):
             userid,
         )
 
+        if result:
+            res = dict(result)
+            try:
+                async with httpx.AsyncClient() as client:
+                    await client.delete(f"http://localhost:8004/posts/{res['id']}")
+            except Exception as e:
+                raise Exception(f"Unable to post to event bus! {e}")
+            finally:
+                return result
+
         if not result:
             raise HTTPException(
                 status_code=401,
                 detail="Unauthorized! You may delete post created by you only!",
             )
 
-        return result
     except Exception as e:
         raise Exception(f"Unable to delete post!{e}")

@@ -7,8 +7,11 @@ from urls.urls import POSTS_USER, COMMENTS_USER
 async def userCreatedController(user: UserSchema, conn: asyncpg.Connection):
     try:
         async with httpx.AsyncClient() as client:
-            posts_response = await client.post(POSTS_USER, data=user.model_dump())
-            comments_response = await client.post(COMMENTS_USER, data=user.model_dump())
+            posts_response = await client.post(POSTS_USER, json=user.model_dump())
+            comments_response = await client.post(COMMENTS_USER, json=user.model_dump())
+
+            print(posts_response)
+            print(comments_response)
 
             response = await conn.fetchrow(
                 'INSERT INTO "Events".user_events(event_type, posts_updated, comments_updated)	VALUES ($1, $2, $3)',

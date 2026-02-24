@@ -8,7 +8,7 @@ async def postCreatedController(postid: int, conn: asyncpg.Connection):
     try:
         async with httpx.AsyncClient() as client:
             comments_response = await client.post(
-                COMMENTS_POST, data={"postid": postid}
+                COMMENTS_POST, json={"postid": postid}
             )
 
             response = await conn.fetchrow(

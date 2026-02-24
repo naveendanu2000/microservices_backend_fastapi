@@ -15,12 +15,16 @@ async def setUserCredentials(user: UserSchema, conn: asyncpg.Connection):
         )
 
         if res:
+            res_dict = dict(res)
+            print("dict data", res_dict["id"], res_dict["name"])
             try:
+                print("Posting to eventbus")
                 async with httpx.AsyncClient() as client:
-                    await client.post(
-                        "http://localhost/users",
-                        data={"id": res.id, "username": res.name},
+                    result = await client.post(
+                        "http://localhost:8004/users",
+                        json={"id": int(res_dict["id"]), "username": res_dict["name"]},
                     )
+                    print(f"printing the event to event bus {result}")
             except Exception as e:
                 raise Exception("Event not posted to eventbus! {e}")
             finally:

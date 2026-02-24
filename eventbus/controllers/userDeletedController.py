@@ -11,7 +11,7 @@ async def userDeletedController(userid: int, conn: asyncpg.Connection):
 
             response = await conn.fetchrow(
                 'INSERT INTO "Events".user_events(event_type, posts_updated, comments_updated)	VALUES ($1, $2, $3)',
-                "d",
+                'd',
                 posts_response.is_success,
                 comments_response.is_success,
             )
